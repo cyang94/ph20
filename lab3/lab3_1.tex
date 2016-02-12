@@ -1,0 +1,314 @@
+
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+\setlength{\parskip}{\smallskipamount}
+\setlength{\parindent}{0pt}
+\usepackage{float}
+\usepackage{graphicx}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% A simple dot to overcome graphicx limitations
+\newcommand{\lyxdot}{.}
+
+
+\makeatother
+
+\usepackage{babel}
+\begin{document}
+\begin{center}
+\textbf{\Large{Ph 20.2 - Introduction to Numerical Techniques: Numerical
+Integration}}
+\par\end{center}{\Large \par}
+
+\begin{center}
+{\large{Cassidy Yang\bigskip{}
+}}
+\par\end{center}{\large \par}
+
+
+\subsection*{Part I:}
+
+
+\paragraph{1. }
+
+The equation for the mass on a spring is:
+
+\begin{equation}
+F=ma=-kx.\label{eq:1}
+\end{equation}
+
+
+Additionally, we applied $v=\frac{dx}{dt}$, and $a=\frac{dv}{dt}=-\frac{kx}{m}$,
+and used the Euler method to approximate $x$ and $v$ as a function
+of time. Figure 1 plots the approximated position (1a) and velocity
+(1b) with respect to time ($h=0.01$, $x_{0}=0$, $v_{0}=1$, $\frac{k}{m}=1$).
+Note that after a few oscillations, the amplitudes obviously increase,
+indicating a divergence from the exact solution, and we will se later
+that this indicates that the approximated energy increases over time.
+
+\begin{figure}[H]
+
+
+\caption{Approximate Position and Velocity vs. Time}
+
+
+\begin{minipage}[t]{0.5\columnwidth}%
+\noindent \begin{center}
+\includegraphics[scale=0.3]{C:/Users/cyang94/Dropbox/Ph20/lab3/Position}
+\par\end{center}
+
+\noindent \begin{center}
+(a)
+\par\end{center}%
+\end{minipage}%
+\begin{minipage}[t]{0.5\columnwidth}%
+\noindent \begin{center}
+\includegraphics[scale=0.3]{C:/Users/cyang94/Dropbox/Ph20/lab3/Velocity}
+\par\end{center}
+
+\noindent \begin{center}
+(b)
+\par\end{center}%
+\end{minipage}
+
+\end{figure}
+
+
+
+\paragraph{2.}
+
+We again used the same conditions as above, and plotted the global
+errors ($x_{anal}(t_{i})-x_{i}$ and $v_{anal}(t_{i})-v_{i}$ ) for
+position (blue) and velocity (green) in Figure 2.
+
+\begin{figure}[H]
+\caption{Errors in Position and Velocity vs. Time}
+
+
+\noindent \centering{}\includegraphics[scale=0.5]{C:/Users/cyang94/Dropbox/Ph20/lab3/Errors}
+\end{figure}
+
+
+
+\paragraph{3.}
+
+We determined the maximum error in position for particular step sizes
+beginning with $h_{0}=0.4$ (Figure 3). Note that for small step sizes
+$(\sim h<0.1)$, the maximum error position seems to decrease linearly.
+
+\begin{figure}[H]
+\caption{Maximum $x$ Error vs. Step Size}
+
+
+\noindent \centering{}\includegraphics[scale=0.5]{C:/Users/cyang94/Dropbox/Ph20/lab3/ErrorvsStepSize}
+\end{figure}
+
+
+
+\paragraph{4.}
+
+The normalized total energy of the system can be calculated using
+$E=x^{2}+v^{2}$. We overlayed the evolution of energy with the evolution
+of error in Figure 4. The absolute error of the position is shown
+in blue. The normalized total energy of the system is shown in green.
+The error in energy is shown in red (the energy at all times should
+be equal to one in the exact solution). Note that the error in energy
+increases much faster than that of position.
+
+\begin{figure}[H]
+
+
+\caption{Evolution of Energy and Error over Time}
+
+
+\noindent \centering{}\includegraphics[scale=0.5]{C:/Users/cyang94/Dropbox/Ph20/lab3/EandErrors}
+\end{figure}
+
+
+
+\paragraph{5.}
+
+We have the system (assuming that we set $\frac{k}{x}=1$):
+
+\begin{equation}
+x_{i+1}=x_{i}+hv_{i+1},\,\,\, v_{i+1}=v_{i}-hx_{i+1}.\label{eq:2}
+\end{equation}
+
+
+In order to solve it, we can substitute the second equation into the
+first:
+
+\[
+x_{i+1}=x_{i}+h(v_{i}-hx_{i+1})
+\]
+
+
+\begin{equation}
+x_{i+1}=\frac{x_{i}+hv_{i}}{h^{2}+1}\label{eq:3}
+\end{equation}
+
+
+\begin{equation}
+v_{i+1}=v_{i}-hx_{i+1}=v_{i}-h\left(\frac{x_{i}+hv_{i}}{h^{2}+1}\right).\label{eq:4}
+\end{equation}
+
+
+The position and velocities are shown in Figure 5 a and b respectively.
+Note that the amplitudes decrease over time, indicating that the approximated
+energy decreases over time. Additionally, the maximum error in position
+with respect to step size (for the same step sizes as before) is shown
+in Figure 6. Again, the global errors seem to decrease linearly after
+a certain point. The evolution of approximate energy is shown in Figure
+7. Again, the blue curve indicates the absolute error of position;
+the green curve indicates the approximate energy; and the red curve
+indicates the error of the energy. Note that as opposed to the explicit
+method, the implicit method's energy decreases over time.
+
+\begin{figure}[H]
+\caption{Implicit Approximate Position and Velocity vs. Time}
+
+
+\begin{minipage}[t]{0.5\columnwidth}%
+\noindent \begin{center}
+\includegraphics[scale=0.3]{C:/Users/cyang94/Dropbox/Ph20/lab3/P_Im}
+\par\end{center}
+
+\noindent \begin{center}
+(a)
+\par\end{center}%
+\end{minipage}%
+\begin{minipage}[t]{0.5\columnwidth}%
+\noindent \begin{center}
+\includegraphics[scale=0.3]{C:/Users/cyang94/Dropbox/Ph20/lab3/V_Im}
+\par\end{center}
+
+\noindent \begin{center}
+(b)
+\par\end{center}%
+\end{minipage}
+\end{figure}
+
+
+\begin{figure}[H]
+
+
+\caption{Maximum $x$ Error and Step Size (Implicit Euler Method)}
+
+
+\noindent \centering{}\includegraphics[scale=0.5]{C:/Users/cyang94/Dropbox/Ph20/lab3/ErrorvsStepSize}
+\end{figure}
+
+
+\begin{figure}[H]
+\caption{Evolution of Energy and Error (Implicit Euler Method)}
+
+
+\noindent \centering{}\includegraphics[scale=0.5]{C:/Users/cyang94/Dropbox/Ph20/lab3/EandErrors}
+\end{figure}
+
+
+
+\subsection*{\medskip{}
+}
+
+
+\subsection*{Part II:}
+
+
+\paragraph{1. }
+
+The phase space geometry of the implicit and explicit methods are
+shown in Figure 8. The explicit method trajectory is shown in blue;
+the implicit method trajectory is shown in green; and the trajectory
+of the exact solution is shown in red.
+
+\begin{figure}[H]
+\caption{Phase-Space Geometry (Implicit and Explicit Methods)}
+
+
+\noindent \centering{}\includegraphics[scale=0.5]{C:/Users/cyang94/Dropbox/Ph20/lab3/Phase_Ex_Im}
+\end{figure}
+
+
+
+\paragraph*{2.}
+
+The phase-space trajectory generated from the symplectic method is
+shown in Figure 9 with the exact trajectory in green and the approximated
+trajectory in blue. Figure 9a has the same step size as above. Figure
+9b uses a larger step size ($h=0.1$) so that it becomes more apparent
+that although the trajectory is closed (indicating constant energy),
+it still deviates slightly from that of the exact solution by some
+phase.
+
+\begin{figure}[H]
+\caption{Phase-Space Geometry (Symplectic)}
+
+
+\noindent %
+\begin{minipage}[t]{0.5\columnwidth}%
+\noindent \begin{center}
+\includegraphics[scale=0.3]{C:/Users/cyang94/Dropbox/Ph20/lab3/Phase_Sym1}
+\par\end{center}
+
+\noindent \begin{center}
+(a)
+\par\end{center}%
+\end{minipage}%
+\begin{minipage}[t]{0.5\columnwidth}%
+\noindent \begin{center}
+\includegraphics[scale=0.3]{C:/Users/cyang94/Dropbox/Ph20/lab3/Phase_Sym}
+\par\end{center}
+
+\noindent \begin{center}
+(b)
+\par\end{center}%
+\end{minipage}
+\end{figure}
+
+
+
+\paragraph*{3.}
+
+The evolution of energy obtained with the symplectic Euler method
+is shown in Figure 10. Note that the energy oscillates within the
+vincinity of 1 and does not deviate from that value even after many
+oscillations.
+
+\begin{figure}[H]
+
+
+\caption{Evolution of Energy (Symplectic Euler Method)}
+
+
+\noindent \begin{centering}
+\includegraphics[scale=0.5]{C:/Users/cyang94/Dropbox/Ph20/lab3/Energy_Sym}
+\par\end{centering}
+
+\end{figure}
+
+
+
+\paragraph*{4.}
+
+After many oscillations, the phase lag of our approximate values become
+visible (Figure 11).
+
+\begin{figure}[H]
+
+
+\caption{Phase Lag of Symplectic Euler Method}
+
+
+\noindent \begin{centering}
+\includegraphics[scale=0.5]{C:/Users/cyang94/Dropbox/Ph20/lab3/OscillationLag}
+\par\end{centering}
+
+\end{figure}
+
+\end{document}

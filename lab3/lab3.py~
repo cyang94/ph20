@@ -1,0 +1,27 @@
+import numpy as np
+import pylab
+
+def exspring_anal(x0, v0, tf, h, k, m):
+    # uses explicit Euler method to determine
+    # (positions, velocities, times) tuple of spring
+    # spring constant = k, mass = m
+    # initial position = x0, initial velocity = v0, initial time t0 = 0
+    # final time evaluated at = tf
+    # step size = h
+
+    N = tf/h # total number of steps required
+    t = np.arange(0, tf+h, h) # array of times
+
+    x = np.array([x0]) # begin with the initial position, velocity
+    v = np.array([v0])
+
+    for ti in t[1:]:
+        xi = x[-1] + h * v[-1]
+        vi = v[-1] - h * (k / float(m)) * x[-1]
+	
+        x = np.append(x, xi)
+        v = np.append(v, vi)
+
+    return (x, v, t)
+
+# simulate spring with k = m = 1
