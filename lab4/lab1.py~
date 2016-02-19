@@ -41,12 +41,12 @@ t = np.arange(0, (N + 1) * dt, dt)
 x = Ax * np.cos(2 * np.pi * fx * t) # operates on each element of array
 y = Ay * np.sin(2 * np.pi * fy * t + phi)
 z = x + y
-'''
+
 # writes x, y, z into three different files, one for each variable
 np.savetxt('X_Output.txt', x, delimiter='\n')
 np.savetxt('Y_Output.txt', y, delimiter='\n')
 np.savetxt('Z_Output.txt', z, delimiter='\n')
-'''
+
 plot = raw_input('Plot (XY/ZT): ')
 
 if (plot == 'XY'):

@@ -46,7 +46,7 @@ z = x + y
 np.savetxt('X_Output.txt', x, delimiter='\n')
 np.savetxt('Y_Output.txt', y, delimiter='\n')
 np.savetxt('Z_Output.txt', z, delimiter='\n')
-'''
+
 plot = raw_input('Plot (XY/ZT): ')
 
 if (plot == 'XY'):
@@ -60,3 +60,5 @@ elif (plot == 'ZT'):
     pylab.ylabel('Z(t)')
 
 pylab.show()
+'''
+

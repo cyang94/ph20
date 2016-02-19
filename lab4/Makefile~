@@ -1,0 +1,15 @@
+.PHONY : all
+all : Output.txt conv.png
+
+Output.txt : lab1.py
+	python lab1.py 1 1 1 1 0 0.1 100
+
+conv.png : lab2.py
+	python lab2.py
+
+lab4.pdf : lab4.tex
+	pdflatex lab4.tex
+
+.PHONY : clean
+clean :
+	rm -f *.png *.txt *.pdf *.aux *.out *.log
